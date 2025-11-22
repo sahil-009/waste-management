@@ -1,50 +1,92 @@
-# Welcome to your Expo app 👋
+# Smart Waste Management App - Setup Guide
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Prerequisites
+- Node.js installed
+- Expo CLI installed
+- Android Studio (for Android) or Xcode (for iOS)
+- Appwrite account and project
 
-## Get started
+## Installation
 
-1. Install dependencies
-
+1. **Clone the repository and install dependencies:**
    ```bash
    npm install
    ```
 
-2. Start the app
+2. **Configure Appwrite credentials:**
+   - Copy `.env.example` to `.env`:
+     ```bash
+     cp .env.example .env
+     ```
+   - Update `.env` with your Appwrite credentials:
+     ```env
+     EXPO_PUBLIC_APPWRITE_PROJECT_ID=your_project_id
+     EXPO_PUBLIC_APPWRITE_PROJECT_NAME=your_project_name
+     EXPO_PUBLIC_APPWRITE_ENDPOINT=https://fra.cloud.appwrite.io/v1
+     ```
 
+3. **Setup Appwrite Backend:**
+   - Create database: `waste_management_db`
+   - Create collections: `users`, `waste_reports`
+   - Create storage buckets: `waste_photos`, `pickup_photos`
+   - Deploy cloud functions from `/functions` directory
+
+4. **Run the app:**
+   
+   **For Android:**
    ```bash
-   npx expo start
+   npm run android
+   ```
+   
+   **For iOS:**
+   ```bash
+   npm run ios
+   ```
+   
+   **For Web:**
+   ```bash
+   npm run web
    ```
 
-In the output, you'll find options to open the app in a
+## Testing the Setup
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+1. Open the app on your device/simulator
+2. Navigate to Create Report screen
+3. Test GPS location by tapping "Use Current Location"
+4. Test image upload by tapping the photo area
+5. Submit a report to verify Appwrite integration
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Features
 
-## Get a fresh project
+- 📍 GPS location tracking with reverse geocoding
+- 📷 Image upload (camera & gallery)
+- ☁️ Appwrite backend integration
+- 🎨 Beautiful UI with animations
+- 🔐 User authentication
+- 📊 Real-time reports and task management
 
-When you're ready, run:
+## Troubleshooting
 
-```bash
-npm run reset-project
+- **Location not working:** Grant location permissions in device settings
+- **Camera not working:** Grant camera permissions in device settings
+- **Appwrite errors:** Verify credentials in `.env` file
+- **Build errors:** Clear cache with `npm start -- --clear`
+
+## Project Structure
+
+```
+├── app/                    # Expo Router screens
+│   ├── (onboarding)/      # Splash, role selection
+│   ├── (auth)/            # Login, signup
+│   ├── (resident)/        # Resident screens
+│   └── (worker)/          # Worker screens
+├── components/            # Reusable UI components
+├── lib/                   # Utilities and Appwrite config
+├── functions/             # Appwrite cloud functions
+└── .env                   # Environment variables (not in git)
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Support
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+For issues or questions, please refer to the documentation or create an issue in the repository.
+# waste-management
